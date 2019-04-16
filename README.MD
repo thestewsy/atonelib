@@ -1,4 +1,5 @@
-﻿atonelib v0.0.4 alpha - rev 2019/4/15
+# atonelib
+atonelib v0.0.4 alpha - rev 2019/4/15
 Original example code at https://askubuntu.com/a/55825
 Adapted by Steve Weston (thestewsy) 2018/6/12, Github'ed 2019/4/15
 
@@ -7,14 +8,13 @@ atonelib is a mini-library to be used in conjunction with PyAudio to generate au
 
 II. Usage
 
-1. Import 
+1. Import
 e.g. import atonelib
 
 NOTE: atonelib will import the PyAudio library.
 
-1. An array must be made which becomes the PyAudio object and stream and houses the PyAudio object, stream, and bitrate. 
-Thus:
-tonearray = atonelib.open_tone(bitrate)
+1. An array must be made which becomes the PyAudio object and stream and houses the PyAudio object, stream, and bitrate.
+Thus, tonearray = atonelib.open_tone(bitrate)
 
 The bitrate could be 8000, 11025, 22050, etc.
 
@@ -30,7 +30,7 @@ Byte integer is a 'smoother' sound and takes up less variable space, unicode int
 
 bitrate overrides the bitrate used when opening the stream. This can be used for some odd effects.
 
-* Parameter is optional
+*Parameter is optional
 
 3. Close the array and PyAudio object and stream
 atonelib.close_tone(tonearray)
@@ -42,15 +42,15 @@ So what are some ways one can use this library? Well one can loop over an array 
 notes = [[230, 0.25], [260, 0.25], [290, 0.25], [230, 0.25], [230, 0.25], [260, 0.25], [290, 0.25], [230, 0.25]]
 
 for x in notes:
-	atonelib.play_tone(tonearray, x[0], x[1]) 
+        atonelib.play_tone(tonearray, x[0], x[1])
 
 A whole bank of 'notes' can be played this way.
 
 Another thing one can do is play very short tones while changing the frequency in a for loop.
 
 for x in range(0, 3, 1):
-	for y in range(0, 100, 2):
-		atonelib.play_tone(tonestream, 500 + (y * 30), 0.01)
+        for y in range(0, 100, 2):
+                atonelib.play_tone(tonestream, 500 + (y * 30), 0.01)
 
 This makes for a nifty *wooooOOOOOPP* noise.
 
@@ -62,17 +62,17 @@ play_tone stops execution of other statements in python until the sound is finis
 2. Make a function for the thread to run
 def notes_snd():
 
-    tonearray = atonelib.open_tone(7000)
+        tonearray = atonelib.open_tone(7000)
 
-    notes = [[230, 0.25], [260, 0.25], [290, 0.25], [230, 0.25], [230, 0.25],
+        notes = [[230, 0.25], [260, 0.25], [290, 0.25], [230, 0.25], [230, 0.25],
          [260, 0.25], [290, 0.25], [230, 0.25]]
 
-    for x in notes:
-        atonelib.play_tone(tonearray, x[0], x[1])
+        for x in notes:
+                atonelib.play_tone(tonearray, x[0], x[1])
 
-    atonelib.close_tone(tonearray)       
+        atonelib.close_tone(tonearray)
 
-3. Define the thread object 
+3. Define the thread object
 soundThread = threading.Thread(notes=notes_snd)
 
 4. Start it
@@ -95,8 +95,8 @@ In the for loop, or anywhere in notes_snd that you might want to check regularly
 
 ...
 for x in notes
-	if stop():
-		break
+        if stop():
+        break
 ...
 
 7. stopsound = True
